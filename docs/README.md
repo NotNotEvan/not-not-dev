@@ -6,6 +6,8 @@ Documentation index for `not-not-dev`.
 
 - [Scripts](../scripts/README.md)
 - [Extensions](../extensions/README.md)
+- [Skills](../skills/README.md)
+- [Prompts](../prompts/README.md)
 - [Provider docs](./providers/README.md)
 - [OpenRouter](./providers/openrouter/README.md)
 - [Context7](./providers/context7/README.md)
@@ -26,3 +28,10 @@ docs/
     └── openrouter/
         └── README.md
 ```
+
+Related workflow resources live outside `docs/`:
+
+- [`../extensions/README.md`](../extensions/README.md)
+- [`../skills/README.md`](../skills/README.md)
+- [`../prompts/README.md`](../prompts/README.md)
+- [`../scripts/README.md`](../scripts/README.md)

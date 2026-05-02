@@ -2,11 +2,16 @@
 
 Pi extensions used by `not-not-dev`.
 
-## Included
+## Recommended extensions
 
 ### `guardrails/index.ts`
 
-Confirms risky commands and sensitive writes.
+**Recommended default:** on
+
+What it does:
+- confirms risky shell commands
+- confirms sensitive writes
+- helps prevent accidental edits outside the current project
 
 Install:
 
@@ -14,13 +19,17 @@ Install:
 ./scripts/install-extension-guardrails.sh
 ```
 
-Commands:
+Runtime toggle:
 
 ```text
-/guardrails
 /guardrails on
 /guardrails off
 /guardrails status
+```
+
+Extra TUI controls:
+
+```text
 /guardrails tui
 /guardrails tui on
 /guardrails tui off
@@ -34,7 +43,11 @@ Source:
 
 ### `context-radar/index.ts`
 
-Shows context pressure in Pi.
+**Recommended default:** on
+
+What it does:
+- shows context pressure in Pi
+- makes high context usage easier to notice before it becomes a problem
 
 Install:
 
@@ -42,10 +55,9 @@ Install:
 ./scripts/install-extension-context-radar.sh
 ```
 
-Commands:
+Runtime toggle:
 
 ```text
-/context-radar
 /context-radar on
 /context-radar off
 /context-radar status
@@ -58,7 +70,12 @@ Source:
 
 ### `openrouter/index.ts`
 
-Adds a footer with OpenRouter, model, and context info.
+**Recommended default:** optional, off unless you use OpenRouter
+
+What it does:
+- adds footer/status info for OpenRouter users
+- shows model/context/footer layout information
+- exposes footer ordering and layout controls
 
 Install:
 
@@ -83,6 +100,15 @@ Commands:
 Source:
 
 - [`openrouter/index.ts`](./openrouter/index.ts)
+
+## Concise recommendation summary
+
+If you want the simplest useful setup:
+- enable **guardrails** for safety
+- enable **context-radar** for context awareness
+- enable **openrouter** only if you actually use OpenRouter
+
+The recommended `bootstrap.sh` profile installs `guardrails` and `context-radar` by default, while leaving the OpenRouter footer optional.
 
 ## OpenRouter notes
 

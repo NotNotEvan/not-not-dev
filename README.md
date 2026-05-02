@@ -11,7 +11,7 @@
 
 </div>
 
-`not-not-dev` is a clean, version-controlled home for Pi customizations. It is designed to stay lightweight at the top level, while linking out to focused guides for setup, scripts, and provider-specific extensions.
+`not-not-dev` is a clean, version-controlled home for Pi customizations. It is designed to stay lightweight at the top level, while linking out to focused guides for setup, scripts, provider-specific extensions, and reusable coding workflows.
 
 ---
 
@@ -57,15 +57,27 @@ Examples:
 
 ```sh
 ./scripts/install-mcp-adapter.sh
+./scripts/install-package-pi-subagents.sh
+./scripts/install-package-taskplane.sh
+./scripts/install-package-context-mode.sh
+./scripts/install-package-pi-web-access.sh
 ./scripts/install-extension-guardrails.sh
 ./scripts/install-extension-context-radar.sh
 ./scripts/install-extension-openrouter.sh
 ```
 
-Or run the default setup:
+Or run the recommended default setup:
 
 ```sh
 ./scripts/bootstrap.sh
+```
+
+Optional variants:
+
+```sh
+./scripts/bootstrap.sh --with-openrouter
+./scripts/bootstrap.sh --minimal
+./scripts/bootstrap.sh --without-taskplane --without-context-mode
 ```
 
 ### 5. Reload Pi
@@ -76,6 +88,18 @@ Inside Pi:
 /reload
 ```
 
+### 6. Toggle optional runtime helpers to your preference
+
+Inside Pi:
+
+```text
+/guardrails on
+/guardrails off
+/context-radar on
+/context-radar off
+/footer status
+```
+
 ---
 
 ## Guides
@@ -83,6 +107,9 @@ Inside Pi:
 - [Docs index](./docs/README.md)
 - [Setup and install scripts](./scripts/README.md)
 - [Extensions](./extensions/README.md)
+- [Skills](./skills/README.md)
+- [Prompts](./prompts/README.md)
+- [Scripts](./scripts/README.md)
 - [OpenRouter provider notes](./docs/providers/openrouter/README.md)
 - [Context7 notes](./docs/providers/context7/README.md)
 
@@ -105,13 +132,28 @@ not-not-dev/
 │       └── openrouter/
 │           └── README.md
 ├── package.json
+├── prompts/
+│   ├── README.md
+│   ├── pi-customization-plan.md
+│   ├── pi-customization-ship.md
+│   └── stage-taskplane-task.md
 ├── scripts/
 │   ├── README.md
 │   ├── bootstrap.sh
 │   ├── install-mcp-adapter.sh
+│   ├── install-package-context-mode.sh
+│   ├── install-package-pi-subagents.sh
+│   ├── install-package-pi-web-access.sh
+│   ├── install-package-taskplane.sh
 │   ├── install-extension-context-radar.sh
 │   ├── install-extension-guardrails.sh
 │   └── install-extension-openrouter.sh
+├── skills/
+│   ├── README.md
+│   ├── coding-workflow/
+│   │   └── SKILL.md
+│   └── pi-extension-workflow/
+│       └── SKILL.md
 └── extensions/
     ├── README.md
     ├── context-radar/
@@ -158,6 +200,29 @@ See:
 - [OpenRouter provider notes](./docs/providers/openrouter/README.md)
 - [`extensions/openrouter/index.ts`](./extensions/openrouter/index.ts)
 
+### Recommended packages and plugins
+
+Recommended defaults installed by `./scripts/bootstrap.sh`:
+
+- **`pi-mcp-adapter`** — direct MCP tool support; used here for Context7 access
+- **`pi-subagents`** — builtin scout/planner/worker/reviewer/oracle delegation workflows
+- **`taskplane`** — queued task packets and `/orch` autonomous execution
+- **`context-mode`** — better handling for large output, logs, diffs, and test results
+- **`pi-web-access`** — web search, fetching, and source-backed research helpers like `librarian`
+- **`guardrails`** — confirms risky commands and sensitive writes
+- **`context-radar`** — shows context pressure and can be toggled on/off in Pi
+
+Optional:
+
+- **`openrouter` footer extension** — provider-specific footer/status UI for OpenRouter users
+
+Recommended quick picks:
+- **minimal:** `pi-mcp-adapter` + `guardrails`
+- **recommended default:** minimal + `pi-subagents` + `taskplane` + `context-mode` + `pi-web-access` + `context-radar`
+- **OpenRouter users:** recommended default + `openrouter`
+
+These defaults are install-time toggles in `bootstrap.sh`, and the interactive extensions also expose runtime toggles inside Pi.
+
 ### Context7 MCP setup
 
 This repo also includes a project-local Context7 MCP config for use with `pi-mcp-adapter`.
@@ -180,6 +245,8 @@ More detail:
 
 - [Script usage](./scripts/README.md)
 - [Extension notes](./extensions/README.md)
+- [Skills](./skills/README.md)
+- [Prompts](./prompts/README.md)
 
 ---
 
@@ -193,16 +260,13 @@ More detail:
 
 ## Roadmap
 
-Potential future additions:
+Near-term direction:
 
-- provider-specific docs under `docs/providers/`
-- provider-specific extension groupings such as `extensions/openrouter/`
-- more provider integrations
-- more `extensions/`
-- `skills/` for reusable workflows
-- `prompts/` for repeatable prompt templates
-- `themes/` for custom Pi appearance
-- workstation bootstrap helpers
+- expand repo-local agents and prompt workflows for coding work
+- refine install defaults and optional profiles in `bootstrap.sh`
+- add more provider-specific docs without making the whole repo provider-specific
+- continue keeping extensions/skills/prompts small, explicit, and removable
+- add themes or workstation bootstrap helpers only when they stay maintainable
 
 ---
 

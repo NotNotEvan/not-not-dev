@@ -4,6 +4,7 @@ This directory is reserved for provider-specific documentation.
 
 Current and future additions:
 
+- `docs/providers/context7/README.md`
 - `docs/providers/openrouter/README.md`
 - `docs/providers/anthropic/README.md`
 - `docs/providers/openai/README.md`

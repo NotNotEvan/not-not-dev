@@ -1,42 +1,55 @@
 # not-not-dev
 
-> A focused home for Pi customizations, extensions, and developer workflow experiments.
+<div align="center">
 
-`not-not-dev` is a personal Pi coding agent project for collecting small, useful improvements in one clean repo — starting with a custom OpenRouter-aware footer extension.
+# not-not-dev
+
+**Pi coding agent extensions, setup, and workflow tooling**
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![Pi package](https://img.shields.io/badge/Pi-package-blueviolet)](https://github.com/NotNotEvan/not-not-dev)
+[![OpenRouter](https://img.shields.io/badge/OpenRouter-footer-4b8bf4)](./extensions/openrouter-footer.ts)
+
+</div>
+
+`not-not-dev` is a clean, version-controlled home for Pi customizations — starting with a custom footer extension that surfaces OpenRouter usage, remaining credits, model details, and context information directly in the Pi UI.
 
 ---
 
-## Why this repo exists
+## Highlights
 
-Pi is flexible, but the best customizations tend to be the ones you can:
+- clean, focused Pi project structure
+- custom OpenRouter-aware footer extension
+- quick local install with a helper script
+- easy to clone, reload, and iterate on
+- ready to grow into a larger Pi toolkit
 
-- understand quickly
-- install in a few minutes
-- keep under version control
-- move to a new machine without guesswork
+---
 
-This repository is meant to be that home.
-
-## What’s included
+## Included today
 
 ### `extensions/openrouter-footer.ts`
 
-A Pi extension that adds a smarter footer with useful session info, including:
+A Pi extension that adds a dynamic footer showing:
 
 - OpenRouter total usage
 - OpenRouter remaining credits
 - active model
-- context usage / context window
+- context usage and context window
 - current working directory
-- session name, when available
+- current session name when available
 
-### Current project structure
+### Project layout
 
 ```text
 not-not-dev/
 ├── .gitignore
+├── LICENSE
 ├── README.md
 ├── package.json
+├── scripts/
+│   ├── bootstrap.sh
+│   └── install-openrouter-footer.sh
 └── extensions/
     └── openrouter-footer.ts
 ```
@@ -45,44 +58,18 @@ not-not-dev/
 
 ## Footer preview
 
-On wide terminals, the footer renders in a single line.
-On smaller terminals, it gracefully wraps into two lines to keep the important information readable.
-
-Example layout:
+Wide terminal:
 
 ```text
 ~/development/not-not-dev · my-session    OpenRouter used $1.24 left $8.76 · openrouter/anthropic/claude-sonnet-4 · ctx 18%/200k
 ```
 
-Compact layout on narrow terminals:
+Narrow terminal:
 
 ```text
 ~/development/not-not-dev · my-session          openrouter/anthropic/claude-sonnet-4
 OpenRouter used $1.24 left $8.76                                ctx 18%/200k
 ```
-
----
-
-## How it works
-
-The extension fetches OpenRouter account data from:
-
-- `https://openrouter.ai/api/v1/credits`
-- `https://openrouter.ai/api/v1/auth/key`
-
-It reads your OpenRouter API key from either:
-
-- `OPENROUTER_API_KEY`
-- `~/.pi/agent/auth.json`
-
-### Refresh behavior
-
-The footer refreshes:
-
-- when Pi starts
-- after each agent response finishes
-- every 5 minutes in the background
-- when you run `/openrouter-footer-refresh`
 
 ---
 
@@ -96,23 +83,22 @@ npm install -g @mariozechner/pi-coding-agent
 
 ### 2. Configure OpenRouter
 
-Use one of the following:
+Use either:
 
-- set `OPENROUTER_API_KEY`
-- use `/login` inside Pi and store the key there
+- `OPENROUTER_API_KEY`
+- `/login` inside Pi
 
-### 3. Clone this repo
+### 3. Clone the repo
 
 ```bash
-git clone git@github.com:NotNotEvan/not-not-dev.git
+git clone https://github.com/NotNotEvan/not-not-dev.git
 cd not-not-dev
 ```
 
-### 4. Symlink the extension into Pi
+### 4. Install the footer extension
 
 ```bash
-mkdir -p ~/.pi/agent/extensions
-ln -sf "$PWD/extensions/openrouter-footer.ts" ~/.pi/agent/extensions/openrouter-footer.ts
+npm run install:footer
 ```
 
 ### 5. Reload Pi
@@ -123,16 +109,16 @@ Inside Pi:
 /reload
 ```
 
-### 6. Verify the footer
+### 6. Verify it works
 
-Confirm that Pi now shows:
+You should now see footer details for:
 
 - OpenRouter usage
 - remaining credits
 - active model
-- context information
+- context info
 
-If needed, force a refresh:
+Manual refresh command:
 
 ```text
 /openrouter-footer-refresh
@@ -140,63 +126,88 @@ If needed, force a refresh:
 
 ---
 
-## Local development workflow
+## Install helpers
 
-### Edit the extension
+### Footer only
 
-Work in:
+```bash
+bash ./scripts/install-openrouter-footer.sh
+```
+
+### Bootstrap everything currently included
+
+```bash
+bash ./scripts/bootstrap.sh
+```
+
+---
+
+## How the extension gets its data
+
+OpenRouter account data is fetched from:
+
+- `https://openrouter.ai/api/v1/credits`
+- `https://openrouter.ai/api/v1/auth/key`
+
+The API key is read from:
+
+- `OPENROUTER_API_KEY`
+- `~/.pi/agent/auth.json`
+
+### Refresh behavior
+
+The footer refreshes:
+
+- on Pi startup
+- after each agent response
+- every 5 minutes in the background
+- when `/openrouter-footer-refresh` is run
+
+---
+
+## Development workflow
+
+Edit:
 
 ```text
 extensions/openrouter-footer.ts
 ```
 
-### Reload Pi after changes
+Then inside Pi:
 
 ```text
 /reload
 ```
 
-### Good test checks
+Useful checks:
 
 - switch models with `/model`
-- send a message and confirm usage updates
-- resize the terminal and check the footer layout
-- verify behavior with and without an OpenRouter API key configured
+- send a message and watch usage update
+- resize the terminal
+- test with and without OpenRouter credentials
 
 ---
 
-## Commands
+## Security
 
-### `/openrouter-footer-refresh`
-
-Manually refreshes the footer’s OpenRouter usage and credits data.
-
----
-
-## Repository goals
-
-This repo is designed to grow into a tidy Pi toolkit. Likely future additions:
-
-- `extensions/` for more UI and workflow helpers
-- `skills/` for reusable task flows
-- `prompts/` for prompt templates
-- `themes/` for custom visual setups
-- setup scripts for installing a full Pi environment quickly
+- never commit API keys
+- prefer environment variables or Pi auth storage
+- keep extensions small and readable
 
 ---
 
-## Security notes
+## Roadmap ideas
 
-- Do **not** commit API keys or secrets
-- Prefer environment variables or Pi auth storage
-- Keep extensions small, readable, and easy to debug
+Potential future additions:
+
+- more `extensions/`
+- `skills/` for reusable workflows
+- `prompts/` for repeatable prompt templates
+- `themes/` for custom Pi appearance
+- setup scripts for full workstation bootstrapping
 
 ---
 
-## Tech notes
+## License
 
-This repo currently includes a minimal `package.json` so it can evolve into a reusable Pi package over time.
-
-## Maintainer
-
-Built for the `not-not-dev` Pi coding agent setup.
+MIT — see [LICENSE](./LICENSE).

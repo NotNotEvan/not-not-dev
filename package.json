@@ -1,10 +1,36 @@
 {
-  "name": "notnotdev",
-  "private": true,
+  "name": "not-not-dev",
   "version": "0.1.0",
-  "description": "Pi development setup, extensions, and docs for not-not-dev",
-  "keywords": ["pi-package", "pi", "extensions"],
+  "description": "Pi coding agent setup, extensions, and workflow tooling for not-not-dev",
+  "license": "MIT",
+  "author": "Evan Lovett",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NotNotEvan/not-not-dev.git"
+  },
+  "homepage": "https://github.com/NotNotEvan/not-not-dev#readme",
+  "bugs": {
+    "url": "https://github.com/NotNotEvan/not-not-dev/issues"
+  },
+  "keywords": [
+    "pi",
+    "pi-coding-agent",
+    "pi-package",
+    "extensions",
+    "openrouter"
+  ],
+  "files": [
+    "extensions",
+    "scripts",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "install:footer": "bash ./scripts/install-openrouter-footer.sh"
+  },
   "pi": {
-    "extensions": ["./extensions"]
+    "extensions": [
+      "./extensions"
+    ]
   }
 }

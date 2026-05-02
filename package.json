@@ -27,10 +27,12 @@
     "LICENSE"
   ],
   "scripts": {
-    "install:openrouter": "bash ./scripts/install-extension-openrouter.sh",
-    "install:footer": "bash ./scripts/install-extension-openrouter.sh",
-    "install:guardrails": "bash ./scripts/install-extension-guardrails.sh",
-    "install:context-radar": "bash ./scripts/install-extension-context-radar.sh"
+    "install:mcp-adapter": "./scripts/install-mcp-adapter.sh",
+    "install:openrouter": "./scripts/install-extension-openrouter.sh",
+    "install:footer": "./scripts/install-extension-openrouter.sh",
+    "install:guardrails": "./scripts/install-extension-guardrails.sh",
+    "install:context-radar": "./scripts/install-extension-context-radar.sh",
+    "bootstrap": "./scripts/bootstrap.sh"
   },
   "pi": {
     "extensions": [

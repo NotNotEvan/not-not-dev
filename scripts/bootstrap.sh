@@ -9,7 +9,8 @@ fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-bash "$SCRIPT_DIR/install-extension-openrouter.sh"
+"$SCRIPT_DIR/install-mcp-adapter.sh"
+"$SCRIPT_DIR/install-extension-openrouter.sh"
 
 echo
 echo "Bootstrap complete."

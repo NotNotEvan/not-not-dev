@@ -59,7 +59,7 @@ Runs the currently included bootstrap flow for this repo.
 Right now it:
 
 - verifies Pi is installed
-- installs the OpenRouter footer extension symlink
+- installs the OpenRouter-powered shared footer extension symlink
 
 You can also install extensions individually with the dedicated helper scripts above.
 

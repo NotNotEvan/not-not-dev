@@ -31,6 +31,10 @@ Commands:
 /guardrails on
 /guardrails off
 /guardrails status
+/guardrails tui
+/guardrails tui on
+/guardrails tui off
+/guardrails tui status
 ```
 
 Source:
@@ -48,6 +52,22 @@ Adds a dynamic Pi footer showing:
 - context usage and context window
 - current working directory
 - session name when available
+- extension status indicators from other extensions
+- an interactive TUI editor for ordering and placing footer items
+
+Commands:
+
+```text
+/footer
+/footer status
+/footer edit
+/footer layout inline
+/footer layout stacked
+/footer order guardrails,openrouter,model,context
+/footer order reset
+/footer reset
+/openrouter-footer-refresh
+```
 
 Source:
 

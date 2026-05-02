@@ -177,42 +177,154 @@ function getBlockReason(risks: GuardrailRisk[]): string {
 	return `Blocked by guardrails: ${risks.map((risk) => risk.label).join(", ")}`;
 }
 
+const STATE_ENTRY_TYPE = "guardrails-state";
+
+function loadSavedState(ctx: ExtensionContext): { enabled: boolean; pinnedInTui: boolean } | undefined {
+	const entries = ctx.sessionManager.getEntries();
+
+	for (let i = entries.length - 1; i >= 0; i--) {
+		const entry = entries[i] as {
+			type?: string;
+			customType?: string;
+			data?: { enabled?: boolean; pinnedInTui?: boolean };
+		};
+
+		if (entry.type !== "custom" || entry.customType !== STATE_ENTRY_TYPE) continue;
+
+		return {
+			enabled: entry.data?.enabled ?? true,
+			pinnedInTui: entry.data?.pinnedInTui ?? false,
+		};
+	}
+
+	return undefined;
+}
+
+function persistState(pi: ExtensionAPI, enabled: boolean, pinnedInTui: boolean): void {
+	pi.appendEntry(STATE_ENTRY_TYPE, { enabled, pinnedInTui });
+}
+
+function getStatusText(ctx: ExtensionContext, enabled: boolean): string {
+	const theme = ctx.ui.theme;
+	return enabled
+		? theme.fg("success", "🛡 GUARDRAILS ACTIVE")
+		: theme.fg("warning", "⚠ GUARDRAILS OFF");
+}
+
+function syncTuiStatus(ctx: ExtensionContext, enabled: boolean, pinnedInTui: boolean): void {
+	ctx.ui.setStatus("guardrails", pinnedInTui ? getStatusText(ctx, enabled) : undefined);
+}
+
+function notifyStateChange(ctx: ExtensionContext, enabled: boolean): void {
+	if (enabled) {
+		ctx.ui.notify("🛡️ GUARDRAILS ACTIVE — confirmation shields are now UP for risky commands and sensitive writes", "success");
+		return;
+	}
+
+	ctx.ui.notify("⚠️ GUARDRAILS DISABLED — risky bash commands and sensitive writes will no longer be intercepted", "warning");
+}
+
 export default function (pi: ExtensionAPI) {
 	let enabled = true;
+	let pinnedInTui = false;
 
 	pi.registerCommand("guardrails", {
-		description: "Toggle guardrails on/off, or show status",
+		description: "Toggle guardrails, show status, or manage the TUI indicator",
 		handler: async (args, ctx) => {
-			const action = (args || "").trim().toLowerCase();
+			const parts = (args || "").trim().toLowerCase().split(/\s+/).filter(Boolean);
+			const [action, subaction] = parts;
+
+			const saveAndSync = () => {
+				persistState(pi, enabled, pinnedInTui);
+				syncTuiStatus(ctx, enabled, pinnedInTui);
+			};
 
 			if (!action || action === "toggle") {
 				enabled = !enabled;
-				ctx.ui.notify(`Guardrails ${enabled ? "enabled" : "disabled"}`, enabled ? "success" : "warning");
+				saveAndSync();
+				notifyStateChange(ctx, enabled);
 				return;
 			}
 
 			if (action === "on" || action === "enable") {
 				enabled = true;
-				ctx.ui.notify("Guardrails enabled", "success");
+				saveAndSync();
+				notifyStateChange(ctx, enabled);
 				return;
 			}
 
 			if (action === "off" || action === "disable") {
 				enabled = false;
-				ctx.ui.notify("Guardrails disabled", "warning");
+				saveAndSync();
+				notifyStateChange(ctx, enabled);
 				return;
 			}
 
 			if (action === "status") {
 				ctx.ui.notify(
-					`Guardrails are ${enabled ? "enabled" : "disabled"}. Checks include risky bash commands, sensitive file writes, and writes outside the current project.",
-					"info",
+					`Guardrails are ${enabled ? "enabled" : "disabled"}. TUI indicator is ${pinnedInTui ? "pinned" : "hidden"}. Checks include risky bash commands, sensitive file writes, and writes outside the current project.`,
+					enabled ? "success" : "warning",
 				);
 				return;
 			}
 
-			ctx.ui.notify("Usage: /guardrails [toggle|on|off|status]", "info");
+			if (action === "tui") {
+				const tuiAction = subaction || "toggle";
+
+				if (tuiAction === "toggle") {
+					pinnedInTui = !pinnedInTui;
+					saveAndSync();
+					ctx.ui.notify(
+						pinnedInTui
+							? `Pinned guardrails status in the TUI footer: ${enabled ? "ACTIVE" : "OFF"}`
+							: "Hidden guardrails status from the TUI footer",
+						pinnedInTui ? "success" : "info",
+					);
+					return;
+				}
+
+				if (tuiAction === "on" || tuiAction === "enable" || tuiAction === "show") {
+					pinnedInTui = true;
+					saveAndSync();
+					ctx.ui.notify(`Pinned guardrails status in the TUI footer: ${enabled ? "ACTIVE" : "OFF"}`, "success");
+					return;
+				}
+
+				if (tuiAction === "off" || tuiAction === "disable" || tuiAction === "hide") {
+					pinnedInTui = false;
+					saveAndSync();
+					ctx.ui.notify("Hidden guardrails status from the TUI footer", "info");
+					return;
+				}
+
+				if (tuiAction === "status") {
+					ctx.ui.notify(
+						`Guardrails TUI indicator is ${pinnedInTui ? "pinned" : "hidden"}. Current guardrails state: ${enabled ? "enabled" : "disabled"}.`,
+						pinnedInTui ? "success" : "info",
+					);
+					return;
+				}
+
+				ctx.ui.notify("Usage: /guardrails tui [toggle|on|off|show|hide|status]", "info");
+				return;
+			}
+
+			ctx.ui.notify("Usage: /guardrails [toggle|on|off|status|tui]", "info");
 		},
+	});
+
+	pi.on("session_start", async (_event, ctx) => {
+		const savedState = loadSavedState(ctx);
+		if (savedState) {
+			enabled = savedState.enabled;
+			pinnedInTui = savedState.pinnedInTui;
+		}
+
+		syncTuiStatus(ctx, enabled, pinnedInTui);
+	});
+
+	pi.on("session_shutdown", async (_event, ctx) => {
+		ctx.ui.setStatus("guardrails", undefined);
 	});
 
 	pi.on("tool_call", async (event, ctx) => {

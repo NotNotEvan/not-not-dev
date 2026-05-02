@@ -123,7 +123,7 @@ See:
 
 ### OpenRouter footer extension
 
-This repo also includes an OpenRouter-specific footer extension for Pi. It adds account and session information directly to the footer, while the rest of the repo remains general enough for future provider integrations.
+This repo also includes an OpenRouter-powered footer for Pi. It adds account and session information directly to the footer while exposing a simple shared `/footer` command and interactive TUI editor for ordering and placing footer items.
 
 See:
 

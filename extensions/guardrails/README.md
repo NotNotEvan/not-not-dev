@@ -66,7 +66,23 @@ Disables guardrails.
 
 ### `/guardrails status`
 
-Shows the current guardrails status and what is being checked.
+Shows the current guardrails status, whether the TUI indicator is pinned, and what is being checked.
+
+### `/guardrails tui`
+
+Toggles a persistent guardrails status indicator in the TUI footer.
+
+### `/guardrails tui on`
+
+Pins the guardrails status in the TUI footer.
+
+### `/guardrails tui off`
+
+Hides the guardrails status from the TUI footer.
+
+### `/guardrails tui status`
+
+Shows whether the TUI guardrails indicator is currently pinned.
 
 ---
 

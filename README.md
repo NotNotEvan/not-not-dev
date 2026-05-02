@@ -51,14 +51,21 @@ git clone https://github.com/NotNotEvan/not-not-dev.git
 cd not-not-dev
 ```
 
-### 4. Install the extension(s) you want
+### 4. Run the install script(s) you want
 
-Example helpers:
+Examples:
 
 ```sh
+./scripts/install-mcp-adapter.sh
 ./scripts/install-extension-guardrails.sh
 ./scripts/install-extension-context-radar.sh
 ./scripts/install-extension-openrouter.sh
+```
+
+Or run the default setup:
+
+```sh
+./scripts/bootstrap.sh
 ```
 
 ### 5. Reload Pi
@@ -77,6 +84,7 @@ Inside Pi:
 - [Setup and install scripts](./scripts/README.md)
 - [Extensions](./extensions/README.md)
 - [OpenRouter provider notes](./docs/providers/openrouter/README.md)
+- [Context7 notes](./docs/providers/context7/README.md)
 
 ---
 
@@ -85,22 +93,30 @@ Inside Pi:
 ```text
 not-not-dev/
 ├── .gitignore
+├── .mcp.json
 ├── LICENSE
 ├── README.md
 ├── docs/
 │   ├── README.md
 │   └── providers/
 │       ├── README.md
+│       ├── context7/
+│       │   └── README.md
 │       └── openrouter/
 │           └── README.md
 ├── package.json
 ├── scripts/
 │   ├── README.md
 │   ├── bootstrap.sh
+│   ├── install-mcp-adapter.sh
+│   ├── install-extension-context-radar.sh
 │   ├── install-extension-guardrails.sh
 │   └── install-extension-openrouter.sh
 └── extensions/
     ├── README.md
+    ├── context-radar/
+    │   ├── README.md
+    │   └── index.ts
     ├── guardrails/
     │   ├── README.md
     │   └── index.ts
@@ -114,7 +130,7 @@ not-not-dev/
 
 ### Guardrails
 
-This repo includes a guardrails extension for confirming risky commands and sensitive writes. It can be toggled with `/guardrails`.
+A safety extension for confirming risky commands and sensitive writes.
 
 See:
 
@@ -122,15 +138,34 @@ See:
 - [`extensions/guardrails/index.ts`](./extensions/guardrails/index.ts)
 - [`extensions/guardrails/README.md`](./extensions/guardrails/README.md)
 
+### Context radar
+
+A lightweight context pressure indicator for Pi.
+
+See:
+
+- [Extensions guide](./extensions/README.md)
+- [`extensions/context-radar/index.ts`](./extensions/context-radar/index.ts)
+- [`extensions/context-radar/README.md`](./extensions/context-radar/README.md)
+
 ### OpenRouter footer extension
 
-This repo also includes a context radar extension for monitoring context pressure, plus an OpenRouter-powered footer for Pi. The footer adds account and session information directly to the footer, keeps the built-in raw context segment available, and exposes a simple shared `/footer` command and interactive TUI editor for ordering and placing footer items.
+A shared footer extension with OpenRouter account info, model info, context info, and footer layout controls.
 
 See:
 
 - [Extensions guide](./extensions/README.md)
 - [OpenRouter provider notes](./docs/providers/openrouter/README.md)
 - [`extensions/openrouter/index.ts`](./extensions/openrouter/index.ts)
+
+### Context7 MCP setup
+
+This repo also includes a project-local Context7 MCP config for use with `pi-mcp-adapter`.
+
+See:
+
+- [Context7 notes](./docs/providers/context7/README.md)
+- [`.mcp.json`](./.mcp.json)
 
 ---
 

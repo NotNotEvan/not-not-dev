@@ -42,6 +42,36 @@ Source:
 - [`guardrails/index.ts`](./guardrails/index.ts)
 - [`guardrails/README.md`](./guardrails/README.md)
 
+### `context-radar/index.ts`
+
+Adds a context pressure indicator showing:
+
+- current context usage percentage
+- current tokens versus context window
+- warning states as pressure builds
+- a short recent trend hint
+- an optional widget above the editor for expanded detail
+
+Install:
+
+```sh
+./scripts/install-extension-context-radar.sh
+```
+
+Commands:
+
+```text
+/context-radar
+/context-radar on
+/context-radar off
+/context-radar status
+```
+
+Source:
+
+- [`context-radar/index.ts`](./context-radar/index.ts)
+- [`context-radar/README.md`](./context-radar/README.md)
+
 ### `openrouter/index.ts`
 
 Adds a dynamic Pi footer showing:
@@ -63,7 +93,7 @@ Commands:
 /footer edit
 /footer layout inline
 /footer layout stacked
-/footer order guardrails,openrouter,model,context
+/footer order guardrails,context-radar,openrouter,model,context
 /footer order reset
 /footer reset
 /openrouter-footer-refresh

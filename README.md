@@ -57,6 +57,7 @@ Example helpers:
 
 ```sh
 ./scripts/install-extension-guardrails.sh
+./scripts/install-extension-context-radar.sh
 ./scripts/install-extension-openrouter.sh
 ```
 
@@ -123,7 +124,7 @@ See:
 
 ### OpenRouter footer extension
 
-This repo also includes an OpenRouter-powered footer for Pi. It adds account and session information directly to the footer while exposing a simple shared `/footer` command and interactive TUI editor for ordering and placing footer items.
+This repo also includes a context radar extension for monitoring context pressure, plus an OpenRouter-powered footer for Pi. The footer adds account and session information directly to the footer, keeps the built-in raw context segment available, and exposes a simple shared `/footer` command and interactive TUI editor for ordering and placing footer items.
 
 See:
 

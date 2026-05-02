@@ -539,7 +539,7 @@ export default function (pi: ExtensionAPI) {
 		if (action === "order") {
 			const rawOrder = rest.join(" ");
 			if (!rawOrder) {
-				ctx.ui.notify("Usage: /footer order guardrails,openrouter,model,context", "info");
+				ctx.ui.notify("Usage: /footer order guardrails,context-radar,openrouter,model,context", "info");
 				return;
 			}
 
@@ -552,7 +552,7 @@ export default function (pi: ExtensionAPI) {
 
 			const order = parseOrderList(rawOrder);
 			if (order.length === 0) {
-				ctx.ui.notify("Usage: /footer order guardrails,openrouter,model,context", "info");
+				ctx.ui.notify("Usage: /footer order guardrails,context-radar,openrouter,model,context", "info");
 				return;
 			}
 

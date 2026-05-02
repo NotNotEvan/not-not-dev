@@ -29,7 +29,8 @@
   "scripts": {
     "install:openrouter": "bash ./scripts/install-extension-openrouter.sh",
     "install:footer": "bash ./scripts/install-extension-openrouter.sh",
-    "install:guardrails": "bash ./scripts/install-extension-guardrails.sh"
+    "install:guardrails": "bash ./scripts/install-extension-guardrails.sh",
+    "install:context-radar": "bash ./scripts/install-extension-context-radar.sh"
   },
   "pi": {
     "extensions": [

@@ -52,6 +52,28 @@ After it completes, reload Pi:
 /reload
 ```
 
+### `install-extension-context-radar.sh`
+
+Creates or updates a symlink from:
+
+- `extensions/context-radar/`
+
+into Pi's local extensions directory:
+
+- `~/.pi/agent/extensions/context-radar`
+
+Run it from the repo root:
+
+```sh
+./scripts/install-extension-context-radar.sh
+```
+
+After it completes, reload Pi:
+
+```text
+/reload
+```
+
 ### `bootstrap.sh`
 
 Runs the currently included bootstrap flow for this repo.

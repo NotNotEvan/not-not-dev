@@ -56,7 +56,7 @@ cd not-not-dev
 Current helper:
 
 ```sh
-./scripts/install-extension-openrouter-footer.sh
+./scripts/install-extension-openrouter.sh
 ```
 
 ### 5. Reload Pi
@@ -74,6 +74,7 @@ Inside Pi:
 - [Docs index](./docs/README.md)
 - [Setup and install scripts](./scripts/README.md)
 - [Extensions](./extensions/README.md)
+- [OpenRouter provider notes](./docs/providers/openrouter/README.md)
 
 ---
 
@@ -87,15 +88,18 @@ not-not-dev/
 ├── docs/
 │   ├── README.md
 │   └── providers/
-│       └── README.md
+│       ├── README.md
+│       └── openrouter/
+│           └── README.md
 ├── package.json
 ├── scripts/
 │   ├── README.md
 │   ├── bootstrap.sh
-│   └── install-extension-openrouter-footer.sh
+│   └── install-extension-openrouter.sh
 └── extensions/
     ├── README.md
-    └── openrouter-footer.ts
+    └── openrouter/
+        └── index.ts
 ```
 
 ---
@@ -109,7 +113,8 @@ This repo currently includes an OpenRouter-specific footer extension for Pi. It 
 See:
 
 - [Extensions guide](./extensions/README.md)
-- [`extensions/openrouter-footer.ts`](./extensions/openrouter-footer.ts)
+- [OpenRouter provider notes](./docs/providers/openrouter/README.md)
+- [`extensions/openrouter/index.ts`](./extensions/openrouter/index.ts)
 
 ---
 

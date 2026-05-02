@@ -2,7 +2,7 @@
 
 This directory is reserved for provider-specific documentation.
 
-Examples of future additions:
+Current and future additions:
 
 - `docs/providers/openrouter/README.md`
 - `docs/providers/anthropic/README.md`

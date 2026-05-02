@@ -10,6 +10,8 @@ The goal is to keep the root README concise, while linking deeper documentation 
 
 - [Scripts](../scripts/README.md)
 - [Extensions](../extensions/README.md)
+- [Provider docs](./providers/README.md)
+- [OpenRouter](./providers/openrouter/README.md)
 
 ---
 
@@ -17,18 +19,25 @@ The goal is to keep the root README concise, while linking deeper documentation 
 
 Provider-specific documentation can live under [`docs/providers/`](./providers/).
 
-Suggested future structure:
+Current structure:
 
 ```text
 docs/
 ├── README.md
 └── providers/
-    ├── openrouter/
-    │   └── README.md
-    ├── anthropic/
-    │   └── README.md
-    └── openai/
+    ├── README.md
+    └── openrouter/
         └── README.md
+```
+
+Suggested future additions:
+
+```text
+docs/providers/
+├── anthropic/
+│   └── README.md
+└── openai/
+    └── README.md
 ```
 
 This keeps the top-level project docs provider-agnostic while still making it easy to document provider-specific setup and extension behavior.

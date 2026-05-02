@@ -2,14 +2,14 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-SOURCE_FILE="$ROOT_DIR/extensions/openrouter-footer.ts"
+SOURCE_DIR="$ROOT_DIR/extensions/openrouter"
 TARGET_DIR="${HOME}/.pi/agent/extensions"
-TARGET_FILE="$TARGET_DIR/openrouter-footer.ts"
+TARGET_LINK="$TARGET_DIR/openrouter"
 
 mkdir -p "$TARGET_DIR"
-ln -sf "$SOURCE_FILE" "$TARGET_FILE"
+ln -sfn "$SOURCE_DIR" "$TARGET_LINK"
 
-echo "Linked: $SOURCE_FILE"
-echo "To:     $TARGET_FILE"
+echo "Linked: $SOURCE_DIR"
+echo "To:     $TARGET_LINK"
 echo
 echo "Next step: open Pi and run /reload"

@@ -8,7 +8,7 @@ The repo is intentionally broader than any one provider, but some extensions may
 
 ## Included extensions
 
-### `openrouter-footer.ts`
+### `openrouter/index.ts`
 
 Adds a dynamic Pi footer showing:
 
@@ -21,7 +21,7 @@ Adds a dynamic Pi footer showing:
 
 Source:
 
-- [`openrouter-footer.ts`](./openrouter-footer.ts)
+- [`openrouter/index.ts`](./openrouter/index.ts)
 
 ---
 
@@ -58,7 +58,7 @@ OpenRouter account data is fetched from:
 
 If you are using a different provider, you can still use this repo — just skip this extension or add a different provider-specific one later.
 
-As the repo grows, provider-specific extensions may move into directories like `extensions/openrouter/`, with matching documentation under `docs/providers/`.
+Provider-specific extensions can live in directories like `extensions/openrouter/`, with matching documentation under `docs/providers/`.
 
 ---
 
@@ -67,7 +67,7 @@ As the repo grows, provider-specific extensions may move into directories like `
 From the repo root:
 
 ```sh
-./scripts/install-extension-openrouter-footer.sh
+./scripts/install-extension-openrouter.sh
 ```
 
 Then reload Pi:

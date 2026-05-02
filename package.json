@@ -27,7 +27,8 @@
     "LICENSE"
   ],
   "scripts": {
-    "install:footer": "bash ./scripts/install-extension-openrouter-footer.sh"
+    "install:openrouter": "bash ./scripts/install-extension-openrouter.sh",
+    "install:footer": "bash ./scripts/install-extension-openrouter.sh"
   },
   "pi": {
     "extensions": [

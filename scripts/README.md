@@ -8,20 +8,20 @@ These scripts are meant to be run directly, so your interactive shell does not n
 
 ## Available scripts
 
-### `install-extension-openrouter-footer.sh`
+### `install-extension-openrouter.sh`
 
 Creates or updates a symlink from:
 
-- `extensions/openrouter-footer.ts`
+- `extensions/openrouter/`
 
 into Pi's local extensions directory:
 
-- `~/.pi/agent/extensions/openrouter-footer.ts`
+- `~/.pi/agent/extensions/openrouter`
 
 Run it from the repo root:
 
 ```sh
-./scripts/install-extension-openrouter-footer.sh
+./scripts/install-extension-openrouter.sh
 ```
 
 After it completes, reload Pi:

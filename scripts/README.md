@@ -30,6 +30,28 @@ After it completes, reload Pi:
 /reload
 ```
 
+### `install-extension-guardrails.sh`
+
+Creates or updates a symlink from:
+
+- `extensions/guardrails/`
+
+into Pi's local extensions directory:
+
+- `~/.pi/agent/extensions/guardrails`
+
+Run it from the repo root:
+
+```sh
+./scripts/install-extension-guardrails.sh
+```
+
+After it completes, reload Pi:
+
+```text
+/reload
+```
+
 ### `bootstrap.sh`
 
 Runs the currently included bootstrap flow for this repo.
@@ -38,6 +60,8 @@ Right now it:
 
 - verifies Pi is installed
 - installs the OpenRouter footer extension symlink
+
+You can also install extensions individually with the dedicated helper scripts above.
 
 Run:
 

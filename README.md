@@ -53,9 +53,10 @@ cd not-not-dev
 
 ### 4. Install the extension(s) you want
 
-Current helper:
+Example helpers:
 
 ```sh
+./scripts/install-extension-guardrails.sh
 ./scripts/install-extension-openrouter.sh
 ```
 
@@ -95,9 +96,13 @@ not-not-dev/
 ├── scripts/
 │   ├── README.md
 │   ├── bootstrap.sh
+│   ├── install-extension-guardrails.sh
 │   └── install-extension-openrouter.sh
 └── extensions/
     ├── README.md
+    ├── guardrails/
+    │   ├── README.md
+    │   └── index.ts
     └── openrouter/
         └── index.ts
 ```
@@ -106,9 +111,19 @@ not-not-dev/
 
 ## Included today
 
+### Guardrails
+
+This repo includes a guardrails extension for confirming risky commands and sensitive writes. It can be toggled with `/guardrails`.
+
+See:
+
+- [Extensions guide](./extensions/README.md)
+- [`extensions/guardrails/index.ts`](./extensions/guardrails/index.ts)
+- [`extensions/guardrails/README.md`](./extensions/guardrails/README.md)
+
 ### OpenRouter footer extension
 
-This repo currently includes an OpenRouter-specific footer extension for Pi. It adds account and session information directly to the footer, while the rest of the repo remains general enough for future provider integrations.
+This repo also includes an OpenRouter-specific footer extension for Pi. It adds account and session information directly to the footer, while the rest of the repo remains general enough for future provider integrations.
 
 See:
 

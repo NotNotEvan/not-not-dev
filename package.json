@@ -28,7 +28,8 @@
   ],
   "scripts": {
     "install:openrouter": "bash ./scripts/install-extension-openrouter.sh",
-    "install:footer": "bash ./scripts/install-extension-openrouter.sh"
+    "install:footer": "bash ./scripts/install-extension-openrouter.sh",
+    "install:guardrails": "bash ./scripts/install-extension-guardrails.sh"
   },
   "pi": {
     "extensions": [

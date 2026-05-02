@@ -8,6 +8,36 @@ The repo is intentionally broader than any one provider, but some extensions may
 
 ## Included extensions
 
+### `guardrails/index.ts`
+
+Adds lightweight protection for risky actions such as:
+
+- `rm -rf`
+- `git reset --hard`
+- `git clean -fd`
+- writes to sensitive files like `.env`
+- writes outside the current working directory
+
+Install:
+
+```sh
+./scripts/install-extension-guardrails.sh
+```
+
+Commands:
+
+```text
+/guardrails
+/guardrails on
+/guardrails off
+/guardrails status
+```
+
+Source:
+
+- [`guardrails/index.ts`](./guardrails/index.ts)
+- [`guardrails/README.md`](./guardrails/README.md)
+
 ### `openrouter/index.ts`
 
 Adds a dynamic Pi footer showing:

@@ -4,72 +4,23 @@
 
 # not-not-dev
 
-**Pi coding agent extensions, setup, and workflow tooling**
+**Pi coding agent setup, extensions, and workflow tooling**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Pi package](https://img.shields.io/badge/Pi-package-blueviolet)](https://github.com/NotNotEvan/not-not-dev)
-[![OpenRouter](https://img.shields.io/badge/OpenRouter-footer-4b8bf4)](./extensions/openrouter-footer.ts)
 
 </div>
 
-`not-not-dev` is a clean, version-controlled home for Pi customizations — starting with a custom footer extension that surfaces OpenRouter usage, remaining credits, model details, and context information directly in the Pi UI.
+`not-not-dev` is a clean, version-controlled home for Pi customizations. It is designed to stay lightweight at the top level, while linking out to focused guides for setup, scripts, and provider-specific extensions.
 
 ---
 
-## Highlights
+## Goals
 
-- clean, focused Pi project structure
-- custom OpenRouter-aware footer extension
-- quick local install with a helper script
-- easy to clone, reload, and iterate on
-- ready to grow into a larger Pi toolkit
-
----
-
-## Included today
-
-### `extensions/openrouter-footer.ts`
-
-A Pi extension that adds a dynamic footer showing:
-
-- OpenRouter total usage
-- OpenRouter remaining credits
-- active model
-- context usage and context window
-- current working directory
-- current session name when available
-
-### Project layout
-
-```text
-not-not-dev/
-├── .gitignore
-├── LICENSE
-├── README.md
-├── package.json
-├── scripts/
-│   ├── bootstrap.sh
-│   └── install-openrouter-footer.sh
-└── extensions/
-    └── openrouter-footer.ts
-```
-
----
-
-## Footer preview
-
-Wide terminal:
-
-```text
-~/development/not-not-dev · my-session    OpenRouter used $1.24 left $8.76 · openrouter/anthropic/claude-sonnet-4 · ctx 18%/200k
-```
-
-Narrow terminal:
-
-```text
-~/development/not-not-dev · my-session          openrouter/anthropic/claude-sonnet-4
-OpenRouter used $1.24 left $8.76                                ctx 18%/200k
-```
+- keep Pi customizations organized
+- make setup easy to repeat on a new machine
+- stay flexible across shells and model providers
+- document provider-specific integrations without making the whole repo provider-specific
 
 ---
 
@@ -77,28 +28,35 @@ OpenRouter used $1.24 left $8.76                                ctx 18%/200k
 
 ### 1. Install Pi
 
-```bash
+```sh
 npm install -g @mariozechner/pi-coding-agent
 ```
 
-### 2. Configure OpenRouter
+### 2. Configure at least one provider
 
-Use either:
+Use whichever provider fits your workflow.
 
-- `OPENROUTER_API_KEY`
-- `/login` inside Pi
+That may mean:
 
-### 3. Clone the repo
+- signing in with `/login` inside Pi
+- setting provider-specific environment variables
+- using local/provider-specific Pi configuration
 
-```bash
+For extension-specific notes, see the linked guides below.
+
+### 3. Clone this repo
+
+```sh
 git clone https://github.com/NotNotEvan/not-not-dev.git
 cd not-not-dev
 ```
 
-### 4. Install the footer extension
+### 4. Install the extension(s) you want
 
-```bash
-npm run install:footer
+Current helper:
+
+```sh
+./scripts/install-openrouter-footer.sh
 ```
 
 ### 5. Reload Pi
@@ -109,102 +67,79 @@ Inside Pi:
 /reload
 ```
 
-### 6. Verify it works
+---
 
-You should now see footer details for:
+## Guides
 
-- OpenRouter usage
-- remaining credits
-- active model
-- context info
+- [Setup and install scripts](./scripts/README.md)
+- [Extensions](./extensions/README.md)
 
-Manual refresh command:
+---
+
+## Current project layout
 
 ```text
-/openrouter-footer-refresh
+not-not-dev/
+├── .gitignore
+├── LICENSE
+├── README.md
+├── package.json
+├── scripts/
+│   ├── README.md
+│   ├── bootstrap.sh
+│   └── install-openrouter-footer.sh
+└── extensions/
+    ├── README.md
+    └── openrouter-footer.ts
 ```
 
 ---
 
-## Install helpers
+## Included today
 
-### Footer only
+### OpenRouter footer extension
 
-```bash
-bash ./scripts/install-openrouter-footer.sh
-```
+This repo currently includes an OpenRouter-specific footer extension for Pi. It adds account and session information directly to the footer, while the rest of the repo remains general enough for future provider integrations.
 
-### Bootstrap everything currently included
+See:
 
-```bash
-bash ./scripts/bootstrap.sh
-```
-
----
-
-## How the extension gets its data
-
-OpenRouter account data is fetched from:
-
-- `https://openrouter.ai/api/v1/credits`
-- `https://openrouter.ai/api/v1/auth/key`
-
-The API key is read from:
-
-- `OPENROUTER_API_KEY`
-- `~/.pi/agent/auth.json`
-
-### Refresh behavior
-
-The footer refreshes:
-
-- on Pi startup
-- after each agent response
-- every 5 minutes in the background
-- when `/openrouter-footer-refresh` is run
+- [Extensions guide](./extensions/README.md)
+- [`extensions/openrouter-footer.ts`](./extensions/openrouter-footer.ts)
 
 ---
 
 ## Development workflow
 
-Edit:
+1. make changes in this repo
+2. run the appropriate install helper if needed
+3. reload Pi with `/reload`
+4. test the behavior in a live session
 
-```text
-extensions/openrouter-footer.ts
-```
+More detail:
 
-Then inside Pi:
-
-```text
-/reload
-```
-
-Useful checks:
-
-- switch models with `/model`
-- send a message and watch usage update
-- resize the terminal
-- test with and without OpenRouter credentials
+- [Script usage](./scripts/README.md)
+- [Extension notes](./extensions/README.md)
 
 ---
 
 ## Security
 
 - never commit API keys
-- prefer environment variables or Pi auth storage
-- keep extensions small and readable
+- prefer Pi auth storage or environment variables
+- keep integrations small, readable, and easy to remove
 
 ---
 
-## Roadmap ideas
+## Roadmap
 
 Potential future additions:
 
+- more provider integrations
 - more `extensions/`
 - `skills/` for reusable workflows
 - `prompts/` for repeatable prompt templates
 - `themes/` for custom Pi appearance
-- setup scripts for full workstation bootstrapping
+- workstation bootstrap helpers
 
 ---
 

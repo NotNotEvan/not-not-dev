@@ -13,4 +13,4 @@ bash "$SCRIPT_DIR/install-openrouter-footer.sh"
 
 echo
 echo "Bootstrap complete."
-echo "If OpenRouter is not configured yet, set OPENROUTER_API_KEY or use /login in Pi."
+echo "If your chosen provider is not configured yet, use /login in Pi or your provider-specific environment/config setup."

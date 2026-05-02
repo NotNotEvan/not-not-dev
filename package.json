@@ -20,13 +20,14 @@
     "openrouter"
   ],
   "files": [
+    "docs",
     "extensions",
     "scripts",
     "README.md",
     "LICENSE"
   ],
   "scripts": {
-    "install:footer": "bash ./scripts/install-openrouter-footer.sh"
+    "install:footer": "bash ./scripts/install-extension-openrouter-footer.sh"
   },
   "pi": {
     "extensions": [

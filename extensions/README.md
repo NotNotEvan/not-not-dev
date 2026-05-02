@@ -58,6 +58,8 @@ OpenRouter account data is fetched from:
 
 If you are using a different provider, you can still use this repo — just skip this extension or add a different provider-specific one later.
 
+As the repo grows, provider-specific extensions may move into directories like `extensions/openrouter/`, with matching documentation under `docs/providers/`.
+
 ---
 
 ## Install
@@ -65,7 +67,7 @@ If you are using a different provider, you can still use this repo — just skip
 From the repo root:
 
 ```sh
-./scripts/install-openrouter-footer.sh
+./scripts/install-extension-openrouter-footer.sh
 ```
 
 Then reload Pi:

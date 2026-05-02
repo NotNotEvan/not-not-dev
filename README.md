@@ -56,7 +56,7 @@ cd not-not-dev
 Current helper:
 
 ```sh
-./scripts/install-openrouter-footer.sh
+./scripts/install-extension-openrouter-footer.sh
 ```
 
 ### 5. Reload Pi
@@ -71,6 +71,7 @@ Inside Pi:
 
 ## Guides
 
+- [Docs index](./docs/README.md)
 - [Setup and install scripts](./scripts/README.md)
 - [Extensions](./extensions/README.md)
 
@@ -83,11 +84,15 @@ not-not-dev/
 ├── .gitignore
 ├── LICENSE
 ├── README.md
+├── docs/
+│   ├── README.md
+│   └── providers/
+│       └── README.md
 ├── package.json
 ├── scripts/
 │   ├── README.md
 │   ├── bootstrap.sh
-│   └── install-openrouter-footer.sh
+│   └── install-extension-openrouter-footer.sh
 └── extensions/
     ├── README.md
     └── openrouter-footer.ts
@@ -134,6 +139,8 @@ More detail:
 
 Potential future additions:
 
+- provider-specific docs under `docs/providers/`
+- provider-specific extension groupings such as `extensions/openrouter/`
 - more provider integrations
 - more `extensions/`
 - `skills/` for reusable workflows

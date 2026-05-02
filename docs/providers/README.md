@@ -1,0 +1,17 @@
+# Provider Docs
+
+This directory is reserved for provider-specific documentation.
+
+Examples of future additions:
+
+- `docs/providers/openrouter/README.md`
+- `docs/providers/anthropic/README.md`
+- `docs/providers/openai/README.md`
+
+These docs can cover:
+
+- authentication details
+- provider-specific environment variables
+- extension behavior
+- model notes
+- troubleshooting

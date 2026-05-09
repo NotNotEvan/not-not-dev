@@ -36,6 +36,20 @@ Use when the task affects:
 Source:
 - [`pi-extension-workflow/SKILL.md`](./pi-extension-workflow/SKILL.md)
 
+### `frontend-uiux-workflow`
+
+A framework-agnostic frontend workflow skill for UI/UX implementation and review work.
+
+Use when the task needs:
+- spec -> plan -> build -> review structure
+- design-system reuse before inventing new primitives
+- explicit state, responsive, and accessibility coverage
+- Context7-first framework/library documentation lookup
+- browser-first validation expectations, including Playwright when available
+
+Source:
+- [`frontend-uiux-workflow/SKILL.md`](./frontend-uiux-workflow/SKILL.md)
+
 ## Notes
 
 - reload Pi with `/reload` after changing extensions, skills, prompts, or project agents

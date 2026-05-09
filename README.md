@@ -110,6 +110,8 @@ Inside Pi:
 - [Skills](./skills/README.md)
 - [Prompts](./prompts/README.md)
 - [Scripts](./scripts/README.md)
+- [Frontend UI/UX workflow skill](./skills/frontend-uiux-workflow/SKILL.md)
+- [Frontend UI/UX prompts](./prompts/frontend-uiux-plan.md) / [ship](./prompts/frontend-uiux-ship.md)
 - [OpenRouter provider notes](./docs/providers/openrouter/README.md)
 - [Context7 notes](./docs/providers/context7/README.md)
 
@@ -132,8 +134,19 @@ not-not-dev/
 │       └── openrouter/
 │           └── README.md
 ├── package.json
+├── .pi/
+│   └── agents/
+│       ├── frontend-uiux-builder.md
+│       ├── frontend-uiux-planner.md
+│       ├── frontend-uiux-reviewer.md
+│       ├── pi-customization-builder.md
+│       ├── pi-customization-planner.md
+│       ├── pi-customization-reviewer.md
+│       └── supervisor.md
 ├── prompts/
 │   ├── README.md
+│   ├── frontend-uiux-plan.md
+│   ├── frontend-uiux-ship.md
 │   ├── pi-customization-plan.md
 │   ├── pi-customization-ship.md
 │   └── stage-taskplane-task.md
@@ -151,6 +164,8 @@ not-not-dev/
 ├── skills/
 │   ├── README.md
 │   ├── coding-workflow/
+│   │   └── SKILL.md
+│   ├── frontend-uiux-workflow/
 │   │   └── SKILL.md
 │   └── pi-extension-workflow/
 │       └── SKILL.md
@@ -231,6 +246,24 @@ See:
 
 - [Context7 notes](./docs/providers/context7/README.md)
 - [`.mcp.json`](./.mcp.json)
+
+### Frontend UI/UX workflow
+
+This repo now includes a framework-agnostic frontend workflow for Pi covering spec -> plan -> build -> review.
+
+It is designed for frontend implementation and design work that should:
+- use Context7 first for framework/library docs
+- prefer design-system reuse before inventing new primitives
+- account for accessibility, responsive behavior, and meaningful UI states
+- prefer Playwright/browser validation when available
+- report tooling limits honestly when browser validation is unavailable
+
+See:
+
+- [Frontend workflow skill](./skills/frontend-uiux-workflow/SKILL.md)
+- [Frontend planning prompt](./prompts/frontend-uiux-plan.md)
+- [Frontend ship prompt](./prompts/frontend-uiux-ship.md)
+- [Project agents](./.pi/agents/)
 
 ---
 

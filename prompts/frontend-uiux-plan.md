@@ -26,5 +26,3 @@ Preferred flow:
    - reuse opportunities from the existing design system/codebase
    - validation expectations and any manual checks still needed
 4. Stop after planning unless the request is explicitly tiny and clearly approved for direct implementation.
-
-If the work would be better queued for autonomous execution, say so and recommend a Taskplane staging workflow instead of implementing inline.

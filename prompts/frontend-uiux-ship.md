@@ -33,5 +33,3 @@ Validation expectations:
 - Run the strongest repo-local tests/checks available.
 - Never claim browser, screenshot, accessibility, or visual regression validation that did not actually happen.
 - If the session lacks browser tooling, say so plainly and name the recommended follow-up checks.
-
-If the user wants the work queued or staged instead of implemented inline, recommend a Taskplane workflow instead.

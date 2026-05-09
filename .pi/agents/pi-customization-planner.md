@@ -33,7 +33,6 @@ Planning rules:
 - call out user-visible effects and doc updates explicitly
 - mention install/bootstrap/package-manifest changes when needed
 - mention `/reload` when runtime Pi behavior is affected
-- if the request should be staged into Taskplane instead of implemented inline, say so clearly
 - do not implement code
 
 Output format (`plan.md`):

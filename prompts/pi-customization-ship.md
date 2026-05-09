@@ -31,7 +31,6 @@ Preferred flow:
 
 When relevant, explicitly consider these installed packages/extensions:
 - `pi-subagents` for orchestration
-- Taskplane for staged/queued work
 - `context-mode` for large output analysis
 - `guardrails` for safety-sensitive operations
 - `context-radar` for context pressure awareness

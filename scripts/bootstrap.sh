@@ -11,7 +11,6 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 INSTALL_MCP_ADAPTER=1
 INSTALL_PI_SUBAGENTS=1
-INSTALL_TASKPLANE=1
 INSTALL_CONTEXT_MODE=1
 INSTALL_PI_WEB_ACCESS=1
 INSTALL_GUARDRAILS=1
@@ -25,7 +24,6 @@ Usage: ./scripts/bootstrap.sh [options]
 Recommended defaults:
   - pi-mcp-adapter     direct MCP tool support (used here for Context7)
   - pi-subagents       focused scout/planner/worker/reviewer/oracle workflows
-  - taskplane          queued autonomous work and /orch batch execution
   - context-mode       better handling of large outputs, logs, and diffs
   - pi-web-access      web research, fetch helpers, and librarian-style research
   - guardrails         safety checks for risky commands and sensitive writes
@@ -40,7 +38,6 @@ Options:
   --with-openrouter        also install the OpenRouter footer extension
   --without-mcp-adapter    skip pi-mcp-adapter
   --without-subagents      skip pi-subagents
-  --without-taskplane      skip taskplane
   --without-context-mode   skip context-mode
   --without-pi-web-access  skip pi-web-access
   --without-guardrails     skip guardrails
@@ -52,7 +49,7 @@ Examples:
   ./scripts/bootstrap.sh
   ./scripts/bootstrap.sh --with-openrouter
   ./scripts/bootstrap.sh --minimal
-  ./scripts/bootstrap.sh --without-taskplane --without-context-mode
+  ./scripts/bootstrap.sh --without-context-mode
 EOF
 }
 
@@ -62,7 +59,6 @@ for arg in "$@"; do
       ;;
     --minimal)
       INSTALL_PI_SUBAGENTS=0
-      INSTALL_TASKPLANE=0
       INSTALL_CONTEXT_MODE=0
       INSTALL_PI_WEB_ACCESS=0
       INSTALL_CONTEXT_RADAR=0
@@ -76,9 +72,6 @@ for arg in "$@"; do
       ;;
     --without-subagents)
       INSTALL_PI_SUBAGENTS=0
-      ;;
-    --without-taskplane)
-      INSTALL_TASKPLANE=0
       ;;
     --without-context-mode)
       INSTALL_CONTEXT_MODE=0
@@ -112,7 +105,6 @@ echo "Installing not-not-dev Pi defaults..."
 echo
 printf '  %-18s %s\n' "mcp-adapter" "$([ "$INSTALL_MCP_ADAPTER" -eq 1 ] && echo on || echo off)"
 printf '  %-18s %s\n' "pi-subagents" "$([ "$INSTALL_PI_SUBAGENTS" -eq 1 ] && echo on || echo off)"
-printf '  %-18s %s\n' "taskplane" "$([ "$INSTALL_TASKPLANE" -eq 1 ] && echo on || echo off)"
 printf '  %-18s %s\n' "context-mode" "$([ "$INSTALL_CONTEXT_MODE" -eq 1 ] && echo on || echo off)"
 printf '  %-18s %s\n' "pi-web-access" "$([ "$INSTALL_PI_WEB_ACCESS" -eq 1 ] && echo on || echo off)"
 printf '  %-18s %s\n' "guardrails" "$([ "$INSTALL_GUARDRAILS" -eq 1 ] && echo on || echo off)"
@@ -127,11 +119,6 @@ fi
 
 if [ "$INSTALL_PI_SUBAGENTS" -eq 1 ]; then
   "$SCRIPT_DIR/install-package-pi-subagents.sh"
-  echo
-fi
-
-if [ "$INSTALL_TASKPLANE" -eq 1 ]; then
-  "$SCRIPT_DIR/install-package-taskplane.sh"
   echo
 fi
 
@@ -172,4 +159,4 @@ fi
 if [ "$INSTALL_OPENROUTER" -eq 1 ]; then
   echo "Runtime toggles: /footer status, /footer edit, /footer reset"
 fi
-echo "Package toggles: rerun bootstrap with --without-* flags, or remove packages later with pi remove npm:<package>"
+echo "Package toggles: rerun bootstrap with supported --without-* flags, or remove packages later with pi remove npm:<package>"

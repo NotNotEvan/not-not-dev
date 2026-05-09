@@ -10,7 +10,6 @@ The default bootstrap profile installs the recommended coding workflow stack:
 
 - **`pi-mcp-adapter`** — direct MCP tool support; used here for Context7
 - **`pi-subagents`** — builtin scout/planner/worker/reviewer/oracle delegation workflows
-- **`taskplane`** — task packets plus `/orch` autonomous execution
 - **`context-mode`** — better handling for large outputs, logs, and diffs
 - **`pi-web-access`** — web search/fetch helpers and source-backed research workflows
 - **`guardrails`** — safety checks for risky commands and sensitive writes
@@ -35,7 +34,7 @@ Useful options:
 ```sh
 ./scripts/bootstrap.sh --with-openrouter
 ./scripts/bootstrap.sh --minimal
-./scripts/bootstrap.sh --without-taskplane --without-context-mode
+./scripts/bootstrap.sh --without-context-mode
 ./scripts/bootstrap.sh --help
 ```
 
@@ -57,14 +56,6 @@ Installs `pi-subagents`.
 
 ```sh
 ./scripts/install-package-pi-subagents.sh
-```
-
-### `install-package-taskplane.sh`
-
-Installs `taskplane`.
-
-```sh
-./scripts/install-package-taskplane.sh
 ```
 
 ### `install-package-context-mode.sh`
@@ -119,7 +110,6 @@ Choose what gets installed by passing flags to `bootstrap.sh`:
 - `--with-openrouter`
 - `--without-mcp-adapter`
 - `--without-subagents`
-- `--without-taskplane`
 - `--without-context-mode`
 - `--without-pi-web-access`
 - `--without-guardrails`
@@ -148,7 +138,6 @@ For installed packages, use Pi package management to remove or re-add them later
 
 ```sh
 pi remove npm:pi-subagents
-pi remove npm:taskplane
 pi remove npm:context-mode
 pi remove npm:pi-web-access
 ```

@@ -2,7 +2,7 @@
 
 Reusable prompt templates for coding workflows in `not-not-dev`.
 
-These templates are designed to work well with `pi-subagents`, Taskplane, Context7, Playwright/browser validation when available, and the repo's project-local agents.
+These templates are designed to work well with `pi-subagents`, Context7, Playwright/browser validation when available, and the repo's project-local agents.
 
 ## Included
 
@@ -35,21 +35,6 @@ Command:
 
 ```text
 /pi-customization-ship <request>
-```
-
-### `stage-taskplane-task`
-
-Stage work into a Taskplane task packet instead of implementing it inline.
-
-Good for:
-- queued work
-- autonomous execution handoffs
-- larger multi-step tasks
-
-Command:
-
-```text
-/stage-taskplane-task <request>
 ```
 
 ### `frontend-uiux-plan`

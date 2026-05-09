@@ -58,7 +58,6 @@ Examples:
 ```sh
 ./scripts/install-mcp-adapter.sh
 ./scripts/install-package-pi-subagents.sh
-./scripts/install-package-taskplane.sh
 ./scripts/install-package-context-mode.sh
 ./scripts/install-package-pi-web-access.sh
 ./scripts/install-extension-guardrails.sh
@@ -77,7 +76,7 @@ Optional variants:
 ```sh
 ./scripts/bootstrap.sh --with-openrouter
 ./scripts/bootstrap.sh --minimal
-./scripts/bootstrap.sh --without-taskplane --without-context-mode
+./scripts/bootstrap.sh --without-context-mode
 ```
 
 ### 5. Reload Pi
@@ -148,8 +147,7 @@ not-not-dev/
 │   ├── frontend-uiux-plan.md
 │   ├── frontend-uiux-ship.md
 │   ├── pi-customization-plan.md
-│   ├── pi-customization-ship.md
-│   └── stage-taskplane-task.md
+│   └── pi-customization-ship.md
 ├── scripts/
 │   ├── README.md
 │   ├── bootstrap.sh
@@ -157,7 +155,6 @@ not-not-dev/
 │   ├── install-package-context-mode.sh
 │   ├── install-package-pi-subagents.sh
 │   ├── install-package-pi-web-access.sh
-│   ├── install-package-taskplane.sh
 │   ├── install-extension-context-radar.sh
 │   ├── install-extension-guardrails.sh
 │   └── install-extension-openrouter.sh
@@ -221,7 +218,6 @@ Recommended defaults installed by `./scripts/bootstrap.sh`:
 
 - **`pi-mcp-adapter`** — direct MCP tool support; used here for Context7 access
 - **`pi-subagents`** — builtin scout/planner/worker/reviewer/oracle delegation workflows
-- **`taskplane`** — queued task packets and `/orch` autonomous execution
 - **`context-mode`** — better handling for large output, logs, diffs, and test results
 - **`pi-web-access`** — web search, fetching, and source-backed research helpers like `librarian`
 - **`guardrails`** — confirms risky commands and sensitive writes
@@ -233,7 +229,7 @@ Optional:
 
 Recommended quick picks:
 - **minimal:** `pi-mcp-adapter` + `guardrails`
-- **recommended default:** minimal + `pi-subagents` + `taskplane` + `context-mode` + `pi-web-access` + `context-radar`
+- **recommended default:** minimal + `pi-subagents` + `context-mode` + `pi-web-access` + `context-radar`
 - **OpenRouter users:** recommended default + `openrouter`
 
 These defaults are install-time toggles in `bootstrap.sh`, and the interactive extensions also expose runtime toggles inside Pi.

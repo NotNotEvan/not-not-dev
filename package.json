@@ -35,7 +35,6 @@
   "scripts": {
     "install:mcp-adapter": "./scripts/install-mcp-adapter.sh",
     "install:pi-subagents": "./scripts/install-package-pi-subagents.sh",
-    "install:taskplane": "./scripts/install-package-taskplane.sh",
     "install:context-mode": "./scripts/install-package-context-mode.sh",
     "install:pi-web-access": "./scripts/install-package-pi-web-access.sh",
     "install:openrouter": "./scripts/install-extension-openrouter.sh",

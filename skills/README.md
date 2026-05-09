@@ -16,7 +16,7 @@ Use when you want a repeatable flow for:
 - planning implementation
 - using subagents deliberately
 - validating changes honestly
-- deciding when to stage work into Taskplane
+- choosing the right execution shape for larger work
 
 Source:
 - [`coding-workflow/SKILL.md`](./coding-workflow/SKILL.md)
@@ -55,4 +55,3 @@ Source:
 - reload Pi with `/reload` after changing extensions, skills, prompts, or project agents
 - use Context7 first when official library/framework docs are needed
 - use local Pi docs/examples before inventing Pi APIs
-- use Taskplane when work should be staged for autonomous execution instead of done inline

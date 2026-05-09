@@ -1,6 +1,6 @@
 ---
 name: coding-workflow
-description: Runs a disciplined coding workflow for non-trivial changes. Use when a task needs clarification, research, planning, implementation, review, or validation; when subagents would help; or when work may need to be staged into Taskplane instead of executed inline.
+description: Runs a disciplined coding workflow for non-trivial changes. Use when a task needs clarification, research, planning, implementation, review, or validation, or when subagents would help.
 ---
 
 # Coding Workflow
@@ -21,12 +21,10 @@ Use when:
 - API behavior or library usage is uncertain
 - you need a repeatable parent-agent workflow
 - you want to use subagents without losing control of the main task
-- you may need to hand work off as a Taskplane task packet
 
 Do not use this skill for:
 - trivial one-line fixes that need no planning or research
 - purely mechanical formatting changes with no behavioral impact
-- tasks that are already fully staged as Taskplane work and only need execution
 
 ## Workflow
 
@@ -40,7 +38,7 @@ Before proposing or changing anything:
   - direct implementation
   - research + recommendation
   - review only
-  - staged Taskplane work
+  - staged follow-up work
 
 For library/framework questions:
 1. use Context7 first when available
@@ -84,8 +82,6 @@ Call out and use the installed tooling when it genuinely helps:
 - **Context7**: first stop for current library/framework docs
 - **`librarian` skill**: when you need source-backed answers about open-source libraries and implementation details
 - **`pi-subagents`**: for recon, planning, review fanout, and controlled implementation handoffs
-- **`create-taskplane-task`**: when the user wants work queued, staged, or prepared for autonomous execution
-- **Taskplane/orch tools**: when work should run as a batch instead of inline
 - **`context-mode`**: when analyzing large logs, large command output, snapshots, diffs, or test output
 - **`guardrails` extension**: preserve it and respect it around risky shell/file actions
 - **`context-radar` extension**: pay attention when context pressure is high; compress findings and avoid noisy output
@@ -113,18 +109,6 @@ When using subagents for review:
 - synthesize findings before making follow-up edits
 - separate blockers from optional polish
 
-## 6. Decide whether to stage into Taskplane
-
-Stage a Taskplane task instead of doing the work inline when:
-- the user explicitly asks to queue or prepare work
-- the work is multi-step and better suited to autonomous execution
-- you need a durable packet with clear acceptance criteria
-- the task should run in `/orch` later
-
-If staging:
-- use the `create-taskplane-task` skill
-- include scope, constraints, validation, and exact file ownership
-- make the packet implementation-ready, not vague
 
 ## Common Rationalizations
 
@@ -134,7 +118,6 @@ If staging:
 | "I can just edit a lot of files now and clean it up later." | Broad first edits create drift and make verification harder. |
 | "A review pass is unnecessary for a medium-sized change." | Even a lightweight review catches regressions and doc drift. |
 | "I do not need to mention limitations if I did not test interactively." | Honest limits are part of a trustworthy result. |
-| "Taskplane is overkill." | If the user wants staged autonomous work, inline execution is the wrong shape. |
 
 ## Red Flags
 
@@ -154,4 +137,3 @@ Before finishing, confirm:
 - [ ] changes stayed narrow and reversible
 - [ ] validation was run at the smallest useful scope
 - [ ] limitations were stated honestly
-- [ ] Taskplane was used when the work should be staged, not improvised inline

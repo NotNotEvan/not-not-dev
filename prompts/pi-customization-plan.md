@@ -22,5 +22,3 @@ Preferred flow:
    - whether repo skills/prompts/agents should change too
    - validation and `/reload` expectations
 4. Do not implement yet unless the request is explicitly tiny and clearly approved for direct execution.
-
-If the request would be better staged for autonomous execution, say so and recommend using the `stage-taskplane-task` workflow.

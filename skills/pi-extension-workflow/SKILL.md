@@ -34,7 +34,6 @@ Use:
 - **`skills/`** for reusable procedural knowledge that the agent should load on demand
 - **`prompts/`** for repeatable slash-command workflows that expand into structured instructions
 - **`.pi/agents/`** for project-specific subagent roles used with `pi-subagents`
-- **Taskplane task packets** when the user wants staged autonomous execution instead of immediate implementation
 
 If a request touches more than one surface, say why.
 
@@ -67,8 +66,6 @@ Stay aligned with this repo:
 When relevant, build workflows around the available tooling instead of ignoring it:
 
 - **`pi-subagents`** for structured recon, planning, implementation handoff, and review workflows
-- **`create-taskplane-task`** for staging work into Taskplane packets
-- **Taskplane `/orch` tools** when queued work should run autonomously
 - **`librarian`** for source-backed open-source library research
 - **`context-mode`** for large outputs, logs, diffs, or test reports
 - **Context7** for current library/framework docs
@@ -147,7 +144,7 @@ For extension behavior:
 ## Verification
 
 Before finishing, confirm:
-- [ ] the change was placed in the right surface (`extensions`, `skills`, `prompts`, `.pi/agents`, Taskplane)
+- [ ] the change was placed in the right surface (`extensions`, `skills`, `prompts`, `.pi/agents`)
 - [ ] relevant Pi docs/examples were read before implementation
 - [ ] repo conventions from `README.md` / `AGENTS.md` were preserved
 - [ ] user-facing docs were updated with the change
